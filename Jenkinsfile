@@ -16,7 +16,7 @@ pipeline {
             steps {
                 withAWS(region: 'us-east-1', credentials: '887a4efb-0f53-4929-8ac6-f425dae11daa') {
                     sh 'ls -la'
-                    sh 'aws s3 cp dist/angular-tour-of-heroes/browser/* s3://sk-jenkins-ng/ --recursive'
+                    sh 'aws s3 cp dist/angular-tour-of-heroes/browser/. s3://sk-jenkins-ng/ --recursive'
                 }
             }
         }
