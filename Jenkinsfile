@@ -8,6 +8,7 @@ pipeline {
                 sh 'echo N | ng analytics off'
                 sh 'ng build'
                 sh 'ls'
+                sh 'cd dist && ls -la'
                 sh 'cd dist/angular-app/browser && ls'
             }
         }
