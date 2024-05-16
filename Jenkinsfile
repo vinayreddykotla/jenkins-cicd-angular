@@ -7,6 +7,7 @@ pipeline {
                 sh 'npm install'
                 sh 'echo N | ng analytics off'
                 sh 'ng build'
+                sh 'ls'
                 sh 'cd dist/angular-app/browser'
                 sh 'ls'
             }
