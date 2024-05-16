@@ -9,7 +9,7 @@ pipeline {
                 sh 'ng build'
                 sh 'ls'
                 sh 'cd dist'
-                sh 'll dist'
+                sh 'ls'
                 sh 'cd dist/angular-app/browser'
                 sh 'ls'
             }
