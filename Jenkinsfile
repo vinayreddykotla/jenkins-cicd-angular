@@ -13,7 +13,7 @@ pipeline {
         }
         stage('S3 Upload') {
             steps {
-                withAWS(region: 'us-east-1', credentials: '9dc47d93-f065-48df-9d1e-562ac8922093') {
+                withAWS(region: 'us-east-1', credentials: '887a4efb-0f53-4929-8ac6-f425dae11daa') {
                     sh 'ls -la'
                     sh 'aws s3 cp * s3://sk-jenkins-ng/'
                 }
