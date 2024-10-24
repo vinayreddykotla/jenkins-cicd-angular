@@ -1,30 +1,22 @@
 pipeline {
-    agent any 
-    environment {
-        AWS_ACCESS_KEY_ID = 'AKIA4MTWMFZO445OUGFE'
-        AWS_SECRET_ACCESS_KEY = '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'
-        S3_BUCKET = 'angular-deploy-s3'
-    }
+    agent any
     stages {
-        stage('Checkout') {
-            steps {
-                git 'https://github.com/vinayreddykotla/jenkins-cicd-angular.git'
-            }
-        }
-        stage('Install Dependencies') {
-            steps {
-                sh 'npm install'
-            }
-        }
         stage('Build') {
             steps {
-                sh 'ng build --prod'
+                sh 'ls'
+                sh 'npm install'
+                sh 'echo N | ng analytics off'
+                sh 'ng build'
+                sh 'ls'
+                sh 'cd dist && ls'
+                sh 'cd dist/angular-tour-of-heroes/browser && ls'
             }
         }
-        stage('Deploy to S3') {
+        stage('S3 Upload') {
             steps {
-                script {
-                    sh 'aws s3 sync ./dist/ s3://angular-deploy-s3/ --delete'
+                withAWS(region: 'us-east-1', credentials: '8c94fa09-4954-4498-aac9-838d930a9170') {
+                    sh 'ls -la'
+                    sh 'aws s3 cp dist/angular-tour-of-heroes/browser/. s3://sk-jenkins-angular/ --recursive'
                 }
             }
         }
